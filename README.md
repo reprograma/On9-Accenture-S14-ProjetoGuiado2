@@ -33,9 +33,9 @@ git push origin (nome da sua branch)
 Dicas:
 
 - Conventional Commits (Commits Convencionais)
-[Guia para commits mais legíveis](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
+  - [Guia para commits mais legíveis](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
 - Atomic commits 
-[Faça commits com frequência](https://www.freshconsulting.com/atomic-commits/)
+  - [Faça commits com frequência](https://www.freshconsulting.com/atomic-commits/)
 - Como fazer um bom commit
 
 
