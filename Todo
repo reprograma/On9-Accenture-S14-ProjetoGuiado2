@@ -1,0 +1,38 @@
+### Endpoints
+
+- **/book/request/new**
+  - [ ] Criamos uma nova entrada na tabela "Requests", relacionando o Usuário que fez a requisição e qual o livro que ele está fazendo o pedido.
+  - Book
+    - [ ] Quando o usuário faz um pedido, buscamos na tabela de "Books" o título que inseriu
+      - Esse livro ainda não existe
+        - [ ] Buscamos livros disponíveis do mesmo gênero que o Usuário estava buscando
+          - Existem
+            - [ ] Retornamos a lista de livros disponíveis do mesmo gênero
+          - Não existem
+            - [ ] Retornamos uma mensagem avisando
+    - Match
+      - Esse livro existe
+        - [ ] Buscamos se ele está disponível
+          - Está disponível
+            - [ ] Atualizamos a tabela "AvailableBooks", marcando essa entrada como indisponível e adicionando o recebedor do livro
+            - [ ] Atualizamos o pedido criado pelo usuário na tabela "Requests", assinalando que o match foi feito
+          - Não está disponível
+            - [ ] Buscamos livros disponíveis do mesmo gênero que o Usuário estava buscando
+              - Existem
+                - [ ] Retornamos a lista de livros disponíveis do mesmo gênero
+              - Não existem
+                - [ ] Retornamos uma mensagem avisando
+- **/book/available/new**
+  - [ ] Quando o usuário inserir um livro como disponível, vamos procurar se esse livro existe em nossa tabela "Books".
+    - Caso ele já exista:
+      - [ ] Relacionamos esse livro com a nova inserção
+    - Caso ele não exista:
+      - [ ] Criamos uma nova entrada na tabela "Books"
+  - [ ] Juntamos as informações do usuário com a do livro e criamos uma nova entrada na tabela "AvailableBooks", campo "isAvailable" começa como verdadeiro.
+
+### Desafio
+
+- **/book/available/new**
+  - [ ] Quando um novo livro disponível é inserido, procuramos se existe algum Request que busca por esse livro, e criamos o match.
+- **/book/request/:id**
+  - [ ] - [ ]Repete o processo de busca por Match através do id do request passado no parâmetro da requisição
