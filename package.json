@@ -23,7 +23,8 @@
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "validator": "^13.1.17"
+    "validator": "^13.1.17",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "husky": "^4.3.0",
