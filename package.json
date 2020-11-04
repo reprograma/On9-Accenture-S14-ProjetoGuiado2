@@ -6,6 +6,7 @@
     "url": "https://github.com/vivianedias/book-match.git"
   },
   "scripts": {
+    "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "lint": "standard src/*.js --fix"
   },
@@ -19,6 +20,7 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "mongoose": "^5.10.9",
+    "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "validator": "^13.1.17"
