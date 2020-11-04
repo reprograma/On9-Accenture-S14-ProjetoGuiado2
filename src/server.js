@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const chalk = require('chalk')
 const errorHandler = require('errorhandler')
 const dotenv = require('dotenv')
+const mongoose = require('mongoose')
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -16,6 +17,20 @@ dotenv.config()
  * Create Express server.
  */
 const app = express()
+
+/**
+ * Connect to MongoDB.
+ */
+mongoose
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => {
+    console.error(err)
+    console.log(
+      '%s MongoDB connection error. Please make sure MongoDB is running.',
+      chalk.red('✗')
+    )
+  })
 
 /**
  * Express configuration.
