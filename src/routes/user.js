@@ -6,3 +6,5 @@ const userController = require('../controllers/user')
 // @desc Registrar usuário
 // @access Public
 router.post('/signup', userController.signup)
+
+module.exports = router
