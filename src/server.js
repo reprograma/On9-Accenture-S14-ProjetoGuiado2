@@ -12,6 +12,10 @@ const mongoose = require('mongoose')
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
 dotenv.config()
+/**
+ * Routes
+ */
+const users = require('./routes/user')
 
 /**
  * Create Express server.
@@ -36,6 +40,8 @@ mongoose.connect(process.env.MONGO_URI, {
 app.set('port', process.env.PORT || 8080)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use('/api/users', users)
 
 /*
  * Error Handler.
