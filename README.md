@@ -50,6 +50,7 @@ git push origin (nome da sua branch)
 ### Como formatar meu código automaticamente?
 
 [StandardJS](https://standardjs.com/)
+
 - Configurações do VSCode
 
 ```json
