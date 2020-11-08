@@ -28,6 +28,10 @@ Essa API tem o intuito de fazer matchs de livros. O usuário pode tanto requisit
 - commit
 - Mandar código para o Github
 
+### Documentação da API
+
+[Board no Miro](https://miro.com/app/board/o9J_kgwSA7M=/)
+
 ### Endpoints
 
 - `/api/users/singup`
