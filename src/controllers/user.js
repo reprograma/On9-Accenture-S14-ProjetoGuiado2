@@ -42,5 +42,6 @@ exports.signup = async (req, res) => {
     })
   } catch (e) {
     console.log(e)
+    return res.status(400).json(e)
   }
 }

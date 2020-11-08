@@ -9,21 +9,22 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 
 /**
- * Load environment variables from .env file, where API keys and passwords are configured.
+ * * Carregar variaveis do arquivo .env file, onde chaves de API e senhas são configuradas
  */
-dotenv.config() // variáveis de ambiente serão carregadas pelo dotenv
+dotenv.config()
 
 /**
  * Routes
  */
 const users = require('./routes/user')
+const books = require('./routes/book')
 
 /**
  * Create Express server.
  */
 const app = express()
 
-/**
+/*
  * Conectar com o MongoDB
  */
 mongoose
@@ -44,6 +45,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/api/users', users)
+app.use('/api/books', books)
 
 /*
  * Error Handler.
