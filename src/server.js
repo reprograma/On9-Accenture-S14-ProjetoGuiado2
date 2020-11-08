@@ -21,13 +21,12 @@ const app = express()
 /**
  * Conectar com o MongoDB
  */
-mongoose.connect(process.end.MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useCreateIndex: true,
   useUnifiedTopology: true
 })
-
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err))
 
