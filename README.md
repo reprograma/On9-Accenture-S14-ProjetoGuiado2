@@ -2,7 +2,7 @@
 
 ## Sobre
 
-Essa API tem o intuito de fazer matchs de livros. O usuário pode tanto requisitar algum livro e possivelmente encontraremos alguém que terá também disponibilizado esse livro para emprestar. Além disso, o usuário também pode adicionar livros que ficarão disponíveis para empréstimo.
+Essa API tem o intuito de fazer matchs de livros. O usuário pode tanto requisitar algum livro e possivelmente encontrar alguém que terá também disponibilizado esse livro para doar, quanto também pode adicionar livros que ficarão disponíveis para doação.
 
 - Descrição do nosso projeto
 - Clonando nosso boilerplate
