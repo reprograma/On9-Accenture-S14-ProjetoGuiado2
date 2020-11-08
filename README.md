@@ -2,15 +2,38 @@
 
 ## Sobre
 
+Essa API tem o intuito de fazer matchs de livros. O usuário pode tanto requisitar algum livro e possivelmente encontraremos alguém que terá também disponibilizado esse livro para emprestar. Além disso, o usuário também pode adicionar livros que ficarão disponíveis para empréstimo.
+
+- Descrição do nosso projeto
 - Clonando nosso boilerplate
 - Subindo nosso servidor
-- commit
+- Criando nosso banco de dados
 - Conectando ao banco de dados
 - commit
-- Configurando as variáveis de ambiente
-- commit
 - Mandar código para o GitHub
-- Descrição do nosso projeto
+- Criando nossa usuária
+  - Conhecendo e utilizando o yup para validação
+    - Referência: https://github.com/jquense/yup
+  - Hasheando e salteando senhas
+    - hasheando: criptografando uma string ao passá-la por um algoritmo de hash (esse algoritmo retorna a mesma coisa, para o mesmo input)
+    - salteando: adiciona caracteres aleatórios antes de criptografar
+- commit
+- Mandar o código para o GitHub
+- Adicionando um exemplar disponível
+  - Testando fazer um requisição
+- commit
+- Mandar o código para o Github
+- Fazendo um pedido de livro
+  - Testando fazendo uma requisição
+- commit
+- Mandar código para o Github
+
+### Endpoints
+
+- `/api/users/singup`
+- `/api/users/all`
+- `/api/books/available/new`
+- `/api/books/requests/new`
 
 ### Como usar o git?
 
@@ -52,10 +75,13 @@ git push origin (nome da sua branch)
 [StandardJS](https://standardjs.com/)
 
 - Configurações do VSCode
+  - Para formatar o código enquanto você programa, instalar a extensão "StandardJS - Javascript Standard Style"
 
 ```json
 {
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "javascript.validate.enable": false,
+  "standard.autoFixOnSave": true
 }
 ```
 
@@ -77,10 +103,24 @@ Dicas:
 
 [Hackaton Starter](https://github.com/sahat/hackathon-starter/blob/master/app.js)
 
-### Buscando livros
-
-[Google Books API](https://developers.google.com/books/docs/v1/getting_started)
-
 ### Testes
 
 - [Melhores práticas de testes](https://github.com/goldbergyoni/javascript-testing-best-practices)
+
+### Desafio
+
+- **/books/available/user/:id**
+
+  - Buscar todos os livros que esse usuário está doando
+
+- **/books/requested/user/:id**
+  - Buscar todos os livros que esse usuário requisitou
+
+**/books/request/delete/:id**
+
+- Excluir um pedido de doação de livro
+
+### Super Desafio
+
+- **/books/available/new**
+  - Quando um novo livro disponível é inserido, procuramos se existe algum BookRequest pede por esse livro, e criamos o match.
