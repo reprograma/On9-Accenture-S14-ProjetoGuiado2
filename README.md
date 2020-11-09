@@ -133,15 +133,16 @@ Dicas:
 ### Desafios
 
 - **/api/users/all**
-- Fazer um endpoint que busca todos os usuários cadastrados
+
+  **Objetivo**: Fazer um endpoint que busca todos os usuários cadastrados
 
   #### Dicas
 
-  - Para fazer uma busca que retonar todos os items dentro daquela coleção, utilize o método `.find()` do Mongoose, sem filtros no parâmetro. Para saber mais, aqui está a [documentação do Mongoose](https://mongoosejs.com/docs/api.html#model_Model.find)
+  Para fazer uma busca que retonar todos os items dentro daquela coleção, utilize o método `.find()` do Mongoose, sem filtros no parâmetro. Para saber mais, aqui está a [documentação do Mongoose](https://mongoosejs.com/docs/api.html#model_Model.find)
 
 - **/api/books/available/new**
 
-  Fazer a função bookController.addBookAvailable funcionar, ou seja, quando fizermos uma requisição POST para o endpoint `/api/books/available/new` com os dados necessários, teremos um retorno bem sucedido, com as entradas esperadas do Model BookAvailable.
+  **Objetivo**: Fazer a função bookController.addBookAvailable funcionar, ou seja, quando fizermos uma requisição POST para o endpoint `/api/books/available/new` com os dados necessários, teremos um retorno bem sucedido, com as entradas esperadas do Model BookAvailable.
 
   #### Dicas
 
@@ -165,7 +166,7 @@ Dicas:
         return booksAvailable;
       };
 
-      // Retorna uma valor
+      // Retorna um valor
       console.log(await searchForAvailableBook()); // Essa função precisa ser chamada com um `await` pois também é uma Promise
 
       // Errado
@@ -201,7 +202,7 @@ Dicas:
 
 - **/books/available/user/:id**
 
-  - Buscar todos os livros que o usuário do parâmetro está doando
+  **Objetivo**: Buscar todos os livros que o usuário do parâmetro está doando
 
   #### Dicas
 
