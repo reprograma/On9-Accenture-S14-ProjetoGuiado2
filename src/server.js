@@ -3,8 +3,6 @@
  */
 const express = require('express')
 const bodyParser = require('body-parser')
-const chalk = require('chalk')
-const errorHandler = require('errorhandler')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 
@@ -47,15 +45,10 @@ app.use('/api/users', users)
 /*
  * Error Handler.
  */
-if (process.env.NODE_ENV === 'development') {
-  // only use in development
-  app.use(errorHandler())
-} else {
-  app.use((err, req, res, next) => {
-    console.error(err)
-    res.status(500).send('Server Error')
-  })
-}
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(500).send('Server Error')
+})
 
 /**
  * Start Express server.
@@ -63,7 +56,6 @@ if (process.env.NODE_ENV === 'development') {
 app.listen(app.get('port'), () => {
   console.log(
     '%s App is running at http://localhost:%d in %s mode',
-    chalk.green('✓'),
     app.get('port'),
     app.get('env')
   )
