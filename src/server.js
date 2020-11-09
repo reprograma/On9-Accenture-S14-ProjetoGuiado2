@@ -15,6 +15,7 @@ dotenv.config()
  * Routes
  */
 const users = require('./routes/user')
+const books = require('./routes/book')
 
 /**
  * Create Express server.
@@ -41,6 +42,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/api/users', users)
+app.use('/api/books', books)
 
 /*
  * Error Handler.
