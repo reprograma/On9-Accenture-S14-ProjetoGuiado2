@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 exports.hashPassword = async (password, res) => {
   try {
     // Salt/salteador de senha
-    // Adc mais um nível de aleatoriedade para que as senhas criptografadas nunca tenham o mesmo valor
+    // Adc mais um nível de aleatoriedade para que as senhas critografadas nunca tenha o mesmo valor
     const salt = await bcrypt.genSalt(10)
 
     // Hashear a senha (extra segurança)
