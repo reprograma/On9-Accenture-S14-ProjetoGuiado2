@@ -2,13 +2,24 @@ const User = require('../models/User')
 const { signupSchema } = require('../validators/user')
 const { hashPassword } = require('../helpers/user')
 
-// exports.getAll = () => {
+exports.getAll = (req, res) => {
 //   // 1- Buscar todas as entradas de Usuários
+  User.find()
+  .then((users)=>{
 //   // 2- Lidar com uma resposta bem sucedida da busca
+    if(User.length < 0){
 //     // 2.1- Mandar alguma resposta formatada com status 204 caso não exista nenhum usuário cadastrado
+      res.status(204).json({message: 'não existem usuarios cadastrados'})
+    }else{
 //     // 2.2- Responder com status 200 e os usuários
+      res.status(200).json(users)
+    }
+  })
+  .catch((err)=>{
 //   // 3- Lidar com uma resposta mal sucedida da busca
-// }
+    res.status(500).json(err)
+  })
+},
 
 exports.signup = async (req, res) => {
   // Lógica de salvar usuários no nosso banco
