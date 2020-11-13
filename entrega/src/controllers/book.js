@@ -3,18 +3,28 @@ const Book = require('../models/Book')
 const BookAvailable = require('../models/BookAvailable')
 const { createAvailableBookEntry } = require('../helpers/book')
 
+//GET - Mostrar todos os livros cadastrados
+
+exports.showAllBooks = async (req, res) => {
+    Book.find()
+        .then((books) => { res.status(200).json(books) })
+        .catch(err => { res.status(500).json(err) })
+}
+
+
+//GET - Listar todos os livros cadastrados por aquele ID que foi passado como parâmetro da requisição
 
 exports.getAvailableBooksFromUser = async (req, res) => {
     const booksList = await BookAvailable.find({ userId: req.params.id })
     if (booksList.length > 0) {
-        return res.status(200).json({ message: `Essa é a lista de livros associados ao id inserido`, booksList })
+        res.status(200).json({ messagem: `Essa é a lista de livros associados ao id inserido`, booksList })
     } else {
-        res.status(204).json({ message: `Infelizmente, esse usuário não disponibilizou nenhum livro` })
+        console.log(`Infelizmente, esse usuário ainda não disponibilizou nenhum livro`)
+        res.status(204).json({ message: `Infelizmente, esse usuário ainda não disponibilizou nenhum livro` })
     }
 }
 
-
-
+//POST - Cadastrar um livro na coleção Book e, se já existir nela, efetuar a inserção dele na coleção AvailableBooks.
 
 exports.addAvailableBook = async (req, res) => {
     try {
