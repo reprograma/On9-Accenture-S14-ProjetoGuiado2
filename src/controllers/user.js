@@ -49,7 +49,7 @@ exports.signup = async (req, res) => {
 // GET retornar todos os usuários cadastrados
 exports.allUsers = async (req, res) => {
   User.find({})
-    .then(user => res.status(200).json(user))
+    .then((user) => res.status(200).json(user))
     .catch(err => {
       console.log(err)
       return res.status(500).json(err)
