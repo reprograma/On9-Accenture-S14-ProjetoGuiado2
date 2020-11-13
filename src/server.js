@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 
+
 /**
  * * Carregar variaveis do arquivo .env file, onde chaves de API e senhas são configuradas
  */
