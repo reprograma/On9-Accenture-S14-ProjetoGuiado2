@@ -1,7 +1,5 @@
 const { bookSchema } = require('../validators/book')
-// const bookModel = require('../models/Book')
-// const bookAvailable = require('../models/BookAvailable')
-// const { createAvailableBookEntry } = require('../helpers/book')
+const bookAvailable = require('../models/BookAvailable')
 const Book = require('../models/Book')
 
 exports.addAvailableBook = async (req, res) => {
@@ -26,5 +24,14 @@ exports.addAvailableBook = async (req, res) => {
       })
   } catch (err) {
     console.log(err)
+  }
+}
+
+exports.getAvailableBookUser = async (req, res) => {
+  const books = await bookAvailable.find({ userId: req.params.id })
+  if (books.length > 0) {
+    return res.satatus(200).json({ message: 'livros que o usuário do parâmetro está doando' })
+  } else {
+    return res.status(204).json({ message: 'nenhum livro disponível' })
   }
 }
