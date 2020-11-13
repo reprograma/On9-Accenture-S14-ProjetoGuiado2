@@ -13,6 +13,10 @@ const mongoose = require('mongoose')
  */
 dotenv.config()
 
+/* Routes */
+const users = require('./routes/user')
+const books = require('./routes/book')
+
 /**
  * Create Express server.
  */
@@ -34,6 +38,9 @@ mongoose.connect(process.env.MONGO_URI, {
 app.set('port', process.env.PORT || 8080)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use('/api/users', users)
+app.use('/api/books', books)
 
 /*
  * Error Handler.
