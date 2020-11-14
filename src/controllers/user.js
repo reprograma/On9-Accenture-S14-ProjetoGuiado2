@@ -42,5 +42,15 @@ exports.signup = async (req, res) => {
       })
   } catch (e) {
     console.log(e)
+
+    exports.getAll = async (req, res) => {
+      user.find()
+      .then((users) => {
+          response.status(200).json(users);
+      })
+      .catch(err => next(err));
+}
+
   }
+   
 }
