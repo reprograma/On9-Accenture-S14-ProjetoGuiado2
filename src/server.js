@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const chalk = require('chalk')
 const errorHandler = require('errorhandler')
 const dotenv = require('dotenv')
+const mongoose = require('mongoose')
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -13,9 +14,27 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 /**
+ * Rotas.
+ */
+const users = require('./routes/user')
+const books = require('./routes/book')
+
+/**
  * Create Express server.
  */
 const app = express()
+
+/**
+ * Conectar com o MongoDB
+ */
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.log(err))
 
 /**
  * Express configuration.
@@ -23,6 +42,9 @@ const app = express()
 app.set('port', process.env.PORT || 8080)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use('/api/users', users)
+app.use('/api/books', books)
 
 /*
  * Error Handler.
