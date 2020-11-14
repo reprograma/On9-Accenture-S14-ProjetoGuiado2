@@ -4,9 +4,9 @@ const { createAvailableBookEntry } = require('../helpers/book')
 const { bookSchema } = require('../validators/book')
 
 exports.getAvailableBooksFromUser = (req, res) => {
-  const { params } = req
+  const { userId } = req.params
   // 1- Buscar todos os livros que o usuário disponibilizou (BookAvailable)
-  BookAvailable.findById({ userId: params.id })
+  BookAvailable.findById(userId)
 //   // Usar o id do usuário passado nos parâmetros para buscar todos os BookAvailable relacionados a esse userId
 //   // 2- Lidar com uma resposta bem sucedida da busca
     .then(existingBook => {
@@ -41,6 +41,7 @@ exports.addAvailableBook = async (req, res) => {
             newBook = new Book(validatedBook)
             // Salvando
             newBook.save()
+              .then(book => res.status(200).json(book))
               .catch(e => {
                 console.log(e)
                 // Retornando a nossa função mais cedo caso haja um erro ao salvar o livro

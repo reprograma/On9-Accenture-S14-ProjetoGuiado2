@@ -4,7 +4,7 @@ const BookAvailable = require('../models/BookAvailable')
 exports.createAvailableBookEntry = async (book, userId) => {
   // 1- Guardamos dentro de uma variável a nossa nova entrada de BookAvailable, criada com o Model importado e os valores que recemos pelo parâmetro
   const newAvailableBook = new BookAvailable({
-    bookId: book.id
+    bookId: book.id,
     userId
   })
 
