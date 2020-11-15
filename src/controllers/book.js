@@ -1,4 +1,6 @@
+const Book = require("../models/Book");
 const { bookSchema } = require("../validators/book");
+const { createAvailableBookEntry } = require("../helpers/book");
 
 // exports.getAvailableBooksFromUser = (req, res) => {
 //   // 1- Buscar todos os livros que o usuário disponibilizou (BookAvailable)
@@ -12,10 +14,10 @@ const { bookSchema } = require("../validators/book");
 exports.addAvailableBook = async (req, res) => {
   try {
     // 1 - Checar se o corpo da requisição é válido
-    const validatedBook = bookSchema.validate(req.body);
+    const validatedBook = await bookSchema.validate(req.body);
 
     // 2 - Buscar a partir do ISBN se esse livro já existe no nosso banco
-    return Book.findOne({ isbn: validatedBook.isbm }).then(
+    return Book.findOne({ isbn: validatedBook.isbn }).then(
       async (existingBook) => {
         let newBook;
         // 3- Caso esse livro não esteja no nosso banco, criar ele na coleção Books e salvar
@@ -26,7 +28,7 @@ exports.addAvailableBook = async (req, res) => {
           newBook.save().catch((e) => {
             console.log(e);
             // Retornando a nossa função mais cedo caso haja um erro ao salvar o livro
-            return res.stats(303).json({
+            return res.status(303).json({
               errors: ["Houve um erro ao criar uma entrada na tabela Users"],
             });
           });
@@ -34,16 +36,16 @@ exports.addAvailableBook = async (req, res) => {
 
         // OBS: Se o livro passado pela requisição já existir no banco de dados, mandamos ele (existingBook), se não, mandamos o newBook
         // 4 - Criando uma nova entrada de livro disponível na coleção BookAvailable através do helper createAvailableBookEntry
-        createAvailableBookEntry(existingBook || newBook, validateBook.userId)
-          .then((bookAvailable) =>
-            res.status(500).json({
+        createAvailableBookEntry(existingBook || newBook, validatedBook.userId)
+          .then((bookAvailable) => {
+            return res.status(201).json(bookAvailable);
+          })
+          .catch((e) => {
+            return res.status(500).json({
               errors: [
                 "Houve um erro ao criar uma entrada na tabela BookAvailable",
               ],
-            })
-          )
-          .catch((e) => {
-            return res.status(200).json(bookAvailable);
+            });
           });
       }
     );
@@ -51,5 +53,37 @@ exports.addAvailableBook = async (req, res) => {
     // Retornando erro de validação
     console.log({ e });
     return res.status(200).json(e);
+  }
+};
+
+exports.getAll = async (req, res) => {
+  try {
+    Book.find({})
+      .exec()
+      .then(async (books) => {
+        const status = books && books.length > 0 ? 200 : 204;
+
+        return res.status(status).send(books);
+      });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json(e);
+  }
+};
+
+exports.getAllByUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+
+    Book.find({})
+      .exec()
+      .then(async (books) => {
+        const status = books && books.length > 0 ? 200 : 204;
+
+        return res.status(status).send(books);
+      });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json(e);
   }
 };

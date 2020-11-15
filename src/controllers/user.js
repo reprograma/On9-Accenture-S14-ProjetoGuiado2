@@ -53,3 +53,16 @@ exports.signup = async (req, res) => {
     return res.status(400).json(e);
   }
 };
+
+exports.getAll = async (req, res) => {
+  try {
+    User.find({}).exec().then(async (users) => {
+      const status = users && users.length > 0 ? 200 : 204; 
+
+      return res.status(status).send(users);
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(400).json(e);
+  }
+};
