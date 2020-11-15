@@ -1,6 +1,16 @@
 const User = require('../models/User')
 const { signupSchema } = require('../validators/user')
 const { hashPassword } = require('../helpers/user')
+const { request, response } = require("express")
+
+exports.getAll = async (request, response) => {
+
+    User.find()
+        .then((users) => {
+            response.status(200).json(users);
+        })
+        .catch(err => next(err));
+}
 
 exports.signup = async (req, res) => {
   // Lógica de salvar usuários no nosso banco
@@ -44,3 +54,4 @@ exports.signup = async (req, res) => {
     console.log(e)
   }
 }
+
