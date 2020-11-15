@@ -36,9 +36,7 @@ exports.signup = async (req, res) => {
         }
                 /*~ Criptografia de senha ~*/
         const passwordHashed = await hashPassword(user.password, res)
-
         user.password = passwordHashed
-
         user.save()
           .then(user => res.status(200).json(user))
           .catch(err => {
