@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js",
+    "start": "nodemon src/server.js",
     "lint": "standard src/*.js --fix"
   },
   "dependencies": {
@@ -17,30 +17,9 @@
     "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
-    "lodash": "^4.17.20",
-    "moment": "^2.29.1",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.6",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "validator": "^13.1.17",
     "yup": "^0.29.3"
-  },
-  "devDependencies": {
-    "husky": "^4.3.0",
-    "lint-staged": "^10.5.1",
-    "standard": "^16.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.js": [
-      "standard --fix",
-      "git add"
-    ]
   },
   "engines": {
     "node": ">=10.22.1",
