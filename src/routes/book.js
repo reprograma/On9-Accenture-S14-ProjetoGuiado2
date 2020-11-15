@@ -13,5 +13,6 @@ router.post('/available/new', bookController.addAvailableBook)
 // Esse endpoint não deveria ser público, porém, como não possuimos autenticação, ele não consegue ser privado
 // @access Public
 // router.get('/available/user/:id', bookController.getAvailableBooksFromUser)
+router.get('/available/user/:id', bookController.getAvailableBooksFromUser)
 
 module.exports = router
