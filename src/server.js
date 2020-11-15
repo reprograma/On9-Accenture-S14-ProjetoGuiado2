@@ -14,6 +14,12 @@ const mongoose = require('mongoose')
 dotenv.config()
 
 /**
+ * 
+ */
+const users = require("./routes/user")
+const books = require('./routes/book')
+
+/**
  * Create Express server.
  */
 const app = express()
@@ -39,6 +45,9 @@ app.set('port', process.env.PORT || 8080)
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use("/api/users", users)
+app.use('/api/books', books)
+
 /*
  * Error Handler.
  */
@@ -51,6 +60,10 @@ if (process.env.NODE_ENV === 'development') {
     res.status(500).send('Server Error')
   })
 }
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(500).send('Server Error')
+})
 
 /**
  * Start Express server.
