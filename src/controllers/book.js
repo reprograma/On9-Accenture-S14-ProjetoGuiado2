@@ -19,7 +19,7 @@ exports.addAvailableBook = async (req, res) => {
             .catch(e => {
               console.log(e)
               // Retornando a nossa função mais cedo caso haja um erro ao salvar o livro
-              return res.stats(303).json({ errors: ['Houve um erro ao criar uma entrada na tabela Users'] })
+              return res.status(404).json({ errors: ['Houve um erro ao criar uma entrada na tabela books'] })
             })
         }
 
@@ -29,14 +29,14 @@ exports.addAvailableBook = async (req, res) => {
           existingBook || newBook,
           validatedBook.userId
         )
-          .then(bookAvailable => res.status(500).json(bookAvailable))
+          .then(bookAvailable => res.status(200).json(bookAvailable))
           .catch(e => {
-            return res.status(200).json({ errors: ['Houve um erro ao criar uma entrada na tabela BookAvailable'] })
+            return res.status(404).json({ errors: ['Houve um erro ao criar uma entrada na tabela BookAvailable'] })
           })
       })
   } catch (e) {
     // Retornando erro de validação
     console.log({ e })
-    return res.status(200).json(e)
+    return res.status(500).json(e)
   }
 }
