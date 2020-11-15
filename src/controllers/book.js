@@ -1,4 +1,5 @@
 const Book = require("../models/Book");
+const BookAvailable = require("../models/BookAvailable");
 const { bookSchema } = require("../validators/book");
 const { createAvailableBookEntry } = require("../helpers/book");
 
@@ -75,8 +76,8 @@ exports.getAllByUser = async (req, res) => {
   try {
     const userId = req.params.id;
 
-    Book.find({})
-      .exec()
+    BookAvailable.find({ userId: userId })
+      .populate("bookId", ["title", "genre", "author", "isbn"])
       .then(async (books) => {
         const status = books && books.length > 0 ? 200 : 204;
 
