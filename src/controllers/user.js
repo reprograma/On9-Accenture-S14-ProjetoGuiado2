@@ -10,6 +10,18 @@ const { hashPassword } = require('../helpers/user')
 //   // 3- Lidar com uma resposta mal sucedida da busca
 // }
 
+exports.getAll =  (req, res) =>{
+  try {
+    User.find()
+      .then(user => res.status(200).json(user))
+      .catch(res.status(204).json({ message: 'Does not exist any user' }))
+
+  } catch (e) {
+    console.log(e)
+    return res.status(400).json({ e: 'It was not possible do the search' })
+  }
+}
+
 exports.signup = async (req, res) => {
   // Lógica de salvar usuários no nosso banco
   // Recebemos pelo req.body, os valores para popular o nosso banco com um Usuário novo

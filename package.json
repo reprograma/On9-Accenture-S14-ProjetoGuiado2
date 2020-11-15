@@ -17,7 +17,7 @@
     "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
-    "mongoose": "^5.10.9",
+    "mongoose": "^5.10.14",
     "nodemon": "^2.0.6",
     "yup": "^0.29.3"
   },
