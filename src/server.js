@@ -25,6 +25,8 @@ const app = express()
 /*
   * Conectar com o MongoDB
 */
+//console.log({ env: process.env })
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,

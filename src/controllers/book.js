@@ -15,7 +15,7 @@ exports.addAvailableBook = async (req, res) => {
     const validatedBook = bookSchema.validate(req.body)
 
     // 2 - Buscar a partir do ISBN se esse livro já existe no nosso banco
-    return Book.findOne({ isbn: validatedBook.isbm })
+    return Book.findOne({ isbn: validatedBook.isbn })
         .then(async existingBook => {
           let newBook
           // 3- Caso esse livro não esteja no nosso banco, criar ele na coleção Books e salvar
@@ -49,3 +49,12 @@ exports.addAvailableBook = async (req, res) => {
     return res.status(200).json(e)
   }
 }
+
+exports.getAvaliableBooksFromUser = async (req, res) => {
+ try {
+
+ } catch (e) {
+   
+ }
+}
+
