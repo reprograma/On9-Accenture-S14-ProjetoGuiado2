@@ -21,8 +21,7 @@ exports.signup = async (req, res) => {
     const user = new User(validatedBody)
 
     // 3 - Procuramos se existe algum usuário no banco com esse e-mail
-    User.findOne({ email: validatedBody.email })
-      .then(async existingUser => {
+    User.findOne({ email: validatedBody.email }).then(async existingUser => {
         // 4 - Verificar se existe algum usuário com esse e-mail
         if (existingUser) {
           // Se existir, retornamos um erro
@@ -41,13 +40,26 @@ exports.signup = async (req, res) => {
         // 7 - Salvar no banco
         user.save()
           // 8 - Caso a requisição seja bem sucedida, retornar o usuário criado com status 200
-          .then(user => res.status(200).json(user))
+          .then((user) => res.status(200).json(user))
           // 9 - Caso a requisição não seja bem sucedida, retornar status 500 com o erro
-          .catch(err => {
+          .catch((err) => {
             console.log(err)
             return res.status(500).json(err)
           })
       })
+  } catch (e) {
+    console.log(e)
+    return res.status(400).json(e)
+  }
+}
+
+exports.getAll = async (req, res) => {
+  try {
+    User.find({}).exec().then(async (users) => {
+      const status = users && users.length > 0 ? 200 : 204 
+
+      return res.status(status).send(users)
+    })
   } catch (e) {
     console.log(e)
     return res.status(400).json(e)

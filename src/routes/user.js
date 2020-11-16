@@ -12,4 +12,7 @@ router.post('/signup', userController.signup)
 // @access Public
 // router.post('/all', userController.getAll)
 
+// @route GET api/users/all
+router.get('/all', userController.getAll)
+
 module.exports = router
