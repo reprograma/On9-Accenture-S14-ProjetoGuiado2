@@ -9,10 +9,10 @@ const bookController = require('../controllers/book')
 router.post('/available/new', bookController.addAvailableBook)
 
 // @route GET /api/books/all
-router.get("/all", bookController.getAll)
+router.get('/all', bookController.getAll)
 
 // @route GET /api/books/available/user/:id
-router.get("/available/user/:id", bookController.getAllByUser)
+router.get('/available/user/:id', bookController.getAllByUser)
 
 // @route GET /api/books/available/user:id
 // @desc Buscar todos os livros disponibilizados pelo usuário passado nos params
