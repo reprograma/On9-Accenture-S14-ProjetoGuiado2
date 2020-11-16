@@ -3,13 +3,11 @@
  */
 const express = require('express')
 const bodyParser = require('body-parser')
-const chalk = require('chalk')
-const errorHandler = require('errorhandler')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 
 /**
- * Load environment variables from .env file, where API keys and passwords are configured.
+ * * Carregar variaveis do arquivo .env file, onde chaves de API e senhas são configuradas
  */
 dotenv.config()
 
@@ -25,9 +23,8 @@ const books = require('./routes/book')
 const app = express()
 
 /*
-* Conectar com o MongoDB
+  * Conectar com o MongoDB
 */
-
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useFindAndModify: false,
@@ -46,18 +43,14 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/api/users', users)
 app.use('/api/books', books)
+
 /*
  * Error Handler.
  */
-if (process.env.NODE_ENV === 'development') {
-  // only use in development
-  app.use(errorHandler())
-} else {
-  app.use((err, req, res, next) => {
-    console.error(err)
-    res.status(500).send('Server Error')
-  })
-}
+app.use((err, req, res, next) => {
+  console.error(err)
+  res.status(500).send('Server Error')
+})
 
 /**
  * Start Express server.
@@ -65,7 +58,6 @@ if (process.env.NODE_ENV === 'development') {
 app.listen(app.get('port'), () => {
   console.log(
     '%s App is running at http://localhost:%d in %s mode',
-    chalk.green('✓'),
     app.get('port'),
     app.get('env')
   )
